@@ -46,7 +46,7 @@ def testAll():
 
     print('all tests passed')
     
-   
+import random, math   
 def randomflip(data):
     bit = random.randrange(len(data))
     data[bit] = (data[bit]+1)%2
