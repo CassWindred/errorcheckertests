@@ -1,3 +1,4 @@
+import random, math
 def testAll():
     assert (message([1]) == [0, 0, 1, 1])
     assert (message([0, 0, 1]) == [0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0])
@@ -45,9 +46,11 @@ def testAll():
     assert (repetitionDecoder([1, 1, 1, 1]) == [1])
 
     print('all tests passed')
-    
-import random, math   
+       
 def randomflip(data):
+    #If the encoded data is invalid (empty array), there is nothing to flip
+    if len(data) == 0:
+        return data
     bit = random.randrange(len(data))
     data[bit] = (data[bit]+1)%2
     return data
