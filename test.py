@@ -45,3 +45,21 @@ def testAll():
     assert (repetitionDecoder([1, 1, 1, 1]) == [1])
 
     print('all tests passed')
+    
+import random, math   
+def randomflip(data):
+    bit = random.randrange(len(data))
+    data[bit] = (data[bit]+1)%2
+    return data
+
+def testdata(inp, fliprandombit=False):
+    if not fliprandombit:
+        assert (inp == dataFromMessage(messageFromCodeword(hammingDecoder(hammingEncoder(message(inp))))))
+    else:
+        assert (inp == dataFromMessage(messageFromCodeword(hammingDecoder(randomflip(hammingEncoder(message(inp)))))))
+
+
+def test_up_to(n, randflip=False, step=1):
+    for i in range(1,n, step):
+        testdata(decimalToVector(i,math.ceil(math.log2(i))), randflip)
+    print("all tests passed")
